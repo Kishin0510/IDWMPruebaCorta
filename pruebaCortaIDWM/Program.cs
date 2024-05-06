@@ -18,30 +18,30 @@ chairs.MapPost("/chair/purchase", SellingChair);
 
 app.Run();
 
-static IResult GetChairs(Datacontext db) {
-    var result = await db.Chair.ToListAsync();
+static async Task<IResult> GetChairs(DataContext db) {
+    var result = await db.Chairs.ToListAsync();
     return TypedResults.Ok(result);
 }
 
-static IResult AddChair(Datacontext db, Chair chair){
-    var result = await db.Chair.Where(c => c.Name == name);
+static async Task<IResult> AddChair(DataContext db, Chair chair){
+    var result = await db.Chairs.Where(c => c.Name == chair.Name);
     if(result is not null) return TypedResults.BadRequest(); 
-    db.Chair.Add(chair);
+    db.Chairs.Add(chair);
     await db.SaveChangesAsync();
 
     return TypedResults.Created($"/api/chair/{chair.id}",chair);
 }
 
-static IResult GetChairByName(DataContext db, string name){
-    var result = await db.Chair.Where(c => c.Name == name);
+static async Task<IResult> GetChairByName(DataContext db, string name){
+    var result = await db.Chairs.Where(c => c.Name == name);
     if(result != null){
         return TypedResults.Ok(result);
     }
     return TypedResults.NotFound();
 }
 
-static IResult UpdateChair(DataContext db, Chair chair, int id){
-    var oldchair = await db.Chair.FindAsync(id);
+static async Task<IResult> UpdateChair(DataContext db, Chair chair, int id){
+    var oldchair = await db.Chairs.FindAsync(id);
     if(oldchair is null) return TypedResults.NotFound();
 
     oldchair.Name = chair.Name;
@@ -54,33 +54,34 @@ static IResult UpdateChair(DataContext db, Chair chair, int id){
     return TypedResults.NoContent();
 }
 
-static IResult DeleteChair(DataContext db, int i){
-    var result = await db.Chair.FindAsync(id);
+static async Task<IResult> DeleteChair(DataContext db, int i){
+    var result = await db.Chairs.FindAsync(i);
     if(result is null) return TypedResults.NotFound();
 
-    db.Chair.Remove(result);
+    db.Chairs.Remove(result);
     await db.SaveChangesAsync();
     return TypedResults.NoContent();
 }
 
-static IResult IncChairStock(DataContext db, int i, int newStock){
-    var result = await db.Chair.FindAsync(id);
+static async Task<IResult> IncChairStock(DataContext db, int i, int newStock){
+    var result = await db.Chairs.FindAsync(i);
     if(result is null) return TypedResults.NotFound();
 
     result.Stock = result.Stock + newStock;
     await db.SaveChangesAsync();
-    return TypedResults.Ok(result)
+    return TypedResults.Ok(result);
 }
 
-static IResult SellingChair(DataContext db, int id, int amount, int pay){
-    var result = await db.Chair.FindAsync(id);
+static async Task<IResult> SellingChair(DataContext db, int id, int amount, int pay){
+    var result = await db.Chairs.FindAsync(id);
     if(result is null) return TypedResults.BadRequest();
     if(result.Stock >= amount){
         int totalToPay = result.Price*amount;
         if(totalToPay != pay) return TypedResults.BadRequest();
         result.Stock = result.Stock - amount;
         await db.SaveChangesAsync();
-        return TypedRequest.Ok("Se a/han una/s vendido silla/s")
+        return TypedRequest.Ok();
     }
+    return TypedResult.BadRequest();
 }
 
