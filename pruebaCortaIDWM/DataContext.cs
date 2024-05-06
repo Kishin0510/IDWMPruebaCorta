@@ -6,5 +6,6 @@ namespace pruebaCortaIDWM
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) {}
         
+        public  DbSet<Chair> Chairs => Set<Chair>();
     }
 }
