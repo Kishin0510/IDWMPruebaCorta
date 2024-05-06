@@ -1,0 +1,7 @@
+C:\Users\Alumnos\Desktop\IDWM\pruebaCortaIDWM\obj\Debug\net7.0\pruebaCortaIDWM.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alumnos\Desktop\IDWM\pruebaCortaIDWM\obj\Debug\net7.0\pruebaCortaIDWM.AssemblyInfoInputs.cache
+C:\Users\Alumnos\Desktop\IDWM\pruebaCortaIDWM\obj\Debug\net7.0\pruebaCortaIDWM.AssemblyInfo.cs
+C:\Users\Alumnos\Desktop\IDWM\pruebaCortaIDWM\obj\Debug\net7.0\pruebaCortaIDWM.csproj.CoreCompileInputs.cache
+C:\Users\Alumnos\Desktop\IDWM\pruebaCortaIDWM\obj\Debug\net7.0\pruebaCortaIDWM.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Alumnos\Desktop\IDWM\pruebaCortaIDWM\obj\Debug\net7.0\pruebaCortaIDWM.csproj.AssemblyReference.cache
+C:\Users\Alumnos\Desktop\IDWM\pruebaCortaIDWM\obj\Debug\net7.0\pruebaCortaIDWM.MvcApplicationPartsAssemblyInfo.cs

@@ -24,6 +24,8 @@ static IResult GetChairs(Datacontext db) {
 }
 
 static IResult AddChair(Datacontext db, Chair chair){
+    var result = await db.Chair.Where(c => c.Name == name);
+    if(result is not null) return TypedResults.BadRequest(); 
     db.Chair.Add(chair);
     await db.SaveChangesAsync();
 
@@ -31,7 +33,7 @@ static IResult AddChair(Datacontext db, Chair chair){
 }
 
 static IResult GetChairByName(DataContext db, string name){
-    var result = await db.Chair.Where(c => c.Name == name).toListAsync();
+    var result = await db.Chair.Where(c => c.Name == name);
     if(result != null){
         return TypedResults.Ok(result);
     }
