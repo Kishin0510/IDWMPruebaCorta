@@ -80,8 +80,8 @@ static async Task<IResult> SellingChair(DataContext db, int id, int amount, int 
         if(totalToPay != pay) return TypedResults.BadRequest();
         result.Stock = result.Stock - amount;
         await db.SaveChangesAsync();
-        return TypedRequest.Ok();
+        return TypedResults.Ok();
     }
-    return TypedResult.BadRequest();
+    return TypedResults.BadRequest();
 }
 
