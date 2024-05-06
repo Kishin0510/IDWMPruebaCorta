@@ -1,3 +1,5 @@
-cd pruebaCortaIDWM
-dotnet restore
+cd pruebaCortaIDWM  
+
+dotnet restore  
+
 dotnet run
